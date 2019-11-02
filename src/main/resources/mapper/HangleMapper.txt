@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.test.dao.HangleMapper">
+  <resultMap id="BaseResultMap" type="com.example.test.pojo.Hangle">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="firm" jdbcType="VARCHAR" property="firm" />
+    <result column="consumer" jdbcType="VARCHAR" property="consumer" />
+    <result column="ship" jdbcType="VARCHAR" property="ship" />
+    <result column="delivery" jdbcType="VARCHAR" property="delivery" />
+    <result column="logistic" jdbcType="VARCHAR" property="logistic" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hangle
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.test.pojo.Hangle">
+    insert into hangle (id, name, firm, 
+      consumer, ship, delivery, 
+      logistic)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{firm,jdbcType=VARCHAR}, 
+      #{consumer,jdbcType=VARCHAR}, #{ship,jdbcType=VARCHAR}, #{delivery,jdbcType=VARCHAR}, 
+      #{logistic,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" >
+    update hangle
+    set name = #{name,jdbcType=VARCHAR},
+	firm = #{firm,jdbcType=VARCHAR},
+      consumer = #{consumer,jdbcType=VARCHAR},
+      ship = #{ship,jdbcType=VARCHAR},
+       delivery = #{delivery,jdbcType=VARCHAR},
+        logistic = #{logistic,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select  name, firm, 
+      consumer, ship,delivery,logistic
+    from hangle
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, firm, consumer, ship, delivery, logistic
+    from hangle
+  </select>
+</mapper>

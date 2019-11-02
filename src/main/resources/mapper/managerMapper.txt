@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.test.dao.managerMapper">
+  <resultMap id="BaseResultMap" type="com.example.test.pojo.manager">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="zindex" jdbcType="INTEGER" property="zindex" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manager
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.example.test.pojo.manager">
+    insert into manager (id, username, password, 
+      pid, zindex)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{pid,jdbcType=INTEGER}, #{zindex,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" >
+    update manager
+    set username = #{username,jdbcType=VARCHAR},
+	password = #{password,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=INTEGER},
+      zindex = #{zindex,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, username, password, pid, zindex
+    from manager
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, username, password, 
+      pid, zindex
+    from manager
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <update id="updatePwd">
+   update manager
+    set
+	password = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
